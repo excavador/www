@@ -1,0 +1,8 @@
+INHERIT: ../../shared/base.yml
+site_name: Turing Pi 2 BMC
+site_description: A fork of the Turing Pi 2 BMC firmware, and what it changes
+site_url: https://turing.tsarev.id
+repo_url: https://github.com/excavador
+edit_uri: ""
+docs_dir: docs
+site_dir: site

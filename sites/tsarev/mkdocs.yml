@@ -1,0 +1,8 @@
+INHERIT: ../../shared/base.yml
+site_name: Oleg Tsarev
+site_description: Open-source work, mostly hardware that was not meant to be programmable
+site_url: https://tsarev.id
+repo_url: https://github.com/excavador
+edit_uri: ""
+docs_dir: docs
+site_dir: site

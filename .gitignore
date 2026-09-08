@@ -1,0 +1,5 @@
+.venv/
+.devbox/
+site/
+sites/*/site/
+__pycache__/
