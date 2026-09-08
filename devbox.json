@@ -13,7 +13,7 @@
   },
   "shell": {
     "init_hook": [
-      "uv venv --quiet || echo 'devbox: uv venv failed'",
+      "[ -d \"$VIRTUAL_ENV\" ] || uv venv --quiet || echo 'devbox: uv venv failed'",
       "uv pip install --quiet -r requirements.txt || echo 'devbox: dependency install FAILED -- mkdocs will be missing'",
       "echo 'www: just --list'"
     ]

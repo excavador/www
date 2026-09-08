@@ -1,0 +1,43 @@
+name: Build
+
+# Every push builds all three sites with --strict, which fails on a broken
+# internal link. These sites describe three repositories that release often;
+# a link checker is the only thing that notices when one of them moves out
+# from under a page. This session found a README that had been wrong for ten
+# releases because nothing checked it.
+on:
+  push:
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          # The revision-date plugin reads git history; a shallow clone makes
+          # every page claim it was written at build time.
+          fetch-depth: 0
+
+      - uses: astral-sh/setup-uv@e92bafb6253dcd438e0484186d7669ea7a8ca1cc # v6.4.3
+
+      - name: install
+        run: |
+          uv venv
+          uv pip install -r requirements.txt
+
+      - name: build all three, strict
+        run: |
+          set -eu
+          for s in tsarev turing homelab; do
+            echo "::group::$s"
+            (cd "sites/$s" && ../../.venv/bin/mkdocs build --strict)
+            echo "::endgroup::"
+          done
