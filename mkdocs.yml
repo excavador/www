@@ -1,5 +1,16 @@
-# Settings every site shares. Each mkdocs.yml uses INHERIT to pull this in, so
-# a theme or extension change is one edit rather than three that drift.
+# One site, one repository: GitHub Pages binds a custom domain per repo, so
+# excavador.xyz, homelab.excavador.xyz and turing.excavador.xyz cannot share
+# one. INHERIT worked across directories and cannot work across repositories;
+# the block below is generated into each of the three and drifts if edited in
+# only one.
+site_name: Oleg Tsarev
+site_description: Open-source work, mostly hardware that was not meant to be programmable
+site_url: https://excavador.xyz
+repo_url: https://github.com/excavador/www
+edit_uri: ""
+docs_dir: docs
+site_dir: site
+
 theme:
   name: material
   features:
@@ -38,9 +49,8 @@ markdown_extensions:
 plugins:
   - search
   # Every page says when it was last touched. These sites describe a moving
-  # target -- three repositories that release often -- and a doc page with no
-  # date invites the reader to assume it is current. This session found a
-  # README that had been wrong for ten releases because nothing dated it.
+  # target -- repositories that release often -- and a doc page with no date
+  # invites the reader to assume it is current.
   - git-revision-date-localized:
       enable_creation_date: false
       fallback_to_build_date: true
