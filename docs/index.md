@@ -18,9 +18,15 @@ and a **serial console per module** in the browser.
 
 ## Homelab
 
-A four-node Kubernetes cluster on those compute modules, plus the tooling that
-keeps it honest — including MCP servers for NetBox and for the household
-inventory.
+A ten-node Kubernetes cluster: eight of those compute modules across two
+boards, a Raspberry Pi 5, and an x86 builder. Talos Linux, so there is no SSH
+and no package manager; Cilium in native routing; Argo CD reconciling
+everything. The control plane is spread across three failure domains, so an
+entire board can go away without taking the cluster with it.
+
+Alongside it, the tooling that keeps it honest — MCP servers for NetBox and for
+the household inventory, Helm charts for things that ship without any, and a
+Talos installer for a board the Image Factory cannot build for.
 
 [Read more →](https://homelab.excavador.xyz)
 
